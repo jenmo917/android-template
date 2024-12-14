@@ -1,9 +1,9 @@
-package ui
+package no.helge.android.featureone.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import domain.SomeUseCase
+import no.helge.android.featureone.domain.SomeUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

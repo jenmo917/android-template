@@ -1,4 +1,4 @@
-package ui
+package no.helge.android.featureone.ui
 
 sealed interface FeatureOneUiState {
     data object Loading : FeatureOneUiState

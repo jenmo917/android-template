@@ -1,11 +1,11 @@
-package hilt
+package no.helge.android.featuretwo.hilt
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import data.SomeRepositoryImpl
-import domain.SomeRepository
+import no.helge.android.featuretwo.data.SomeRepositoryImpl
+import no.helge.android.featuretwo.domain.SomeRepository
 
 @Module
 @InstallIn(SingletonComponent::class)

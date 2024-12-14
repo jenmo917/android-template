@@ -31,6 +31,7 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/feature-one" />
+            <option value="$PROJECT_DIR$/feature/feature-two" />
             <option value="$PROJECT_DIR$/lint" />
           </set>
         </option>

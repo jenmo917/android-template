@@ -31,6 +31,7 @@ rootProject.name = "AndroidTemplate"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":feature:feature-one")
+include(":feature:feature-two")
 include(":core:designsystem")
 include(":core:domain")
 include(":lint")
