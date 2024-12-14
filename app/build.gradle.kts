@@ -1,9 +1,11 @@
 plugins {
-    id("kotlin-kapt")
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.android.template.android.application)
+    alias(libs.plugins.android.template.android.application.flavors)
+    alias(libs.plugins.android.template.android.application.compose)
+    alias(libs.plugins.android.template.android.application.jacoco)
+    alias(libs.plugins.android.template.hilt)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -38,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.featureOne)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -49,16 +52,16 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.fragment)
 
     testImplementation(libs.hilt.android.testing)
-    kaptTest(libs.hilt.android.compiler)
-    testAnnotationProcessor(libs.hilt.android.compiler)
+    kspTest(libs.hilt.compiler)
+    testAnnotationProcessor(libs.hilt.compiler)
 
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
-    androidTestAnnotationProcessor(libs.hilt.android.compiler)
+    kspAndroidTest(libs.hilt.compiler)
+    androidTestAnnotationProcessor(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -67,4 +70,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+dependencyGuard {
+    configuration("prodReleaseRuntimeClasspath")
 }
