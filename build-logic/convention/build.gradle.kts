@@ -77,5 +77,9 @@ gradlePlugin {
             id = "androidtemplate.android.lint"
             implementationClass = "AndroidLintConventionPlugin"
         }
+        register("jvmLibrary") {
+            id = "androidtemplate.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
