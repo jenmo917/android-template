@@ -3,41 +3,28 @@ package no.helge.android.featureone.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import no.helge.android.featureone.domain.SomeUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
+import no.helge.android.featureone.domain.FeatureOneUseCase
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import no.helge.android.common.onFailure
-import no.helge.android.common.onSuccess
-import no.helge.android.core.domain.UseCase
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import no.helge.android.common.Result
 import javax.inject.Inject
-
-sealed class FeatureOneIntent {
-    data object LoadData : FeatureOneIntent()
-}
 
 @HiltViewModel
 class FeatureOneViewModel @Inject constructor(
-    private val someUseCase: SomeUseCase
+    featureOneUseCase: FeatureOneUseCase
 ): ViewModel() {
 
-    private val _state: MutableStateFlow<FeatureOneUiState> = MutableStateFlow(FeatureOneUiState.Loading)
-    val state: StateFlow<FeatureOneUiState> = _state
-
-    fun handleIntent(intent: FeatureOneIntent) {
-        viewModelScope.launch {
-            when (intent) {
-                is FeatureOneIntent.LoadData -> loadData()
-            }
+    val uiState: StateFlow<FeatureOneUiState> = featureOneUseCase().map {
+        when (it) {
+            is Result.Error -> FeatureOneUiState.Error("Something went wrong")
+            Result.Loading -> FeatureOneUiState.Loading
+            is Result.Success -> FeatureOneUiState.Success(it.data)
         }
-    }
-
-    private suspend fun loadData() {
-        _state.value = FeatureOneUiState.Loading
-        someUseCase.run(UseCase.None()).onSuccess {
-            _state.value = FeatureOneUiState.Success(it)
-        }.onFailure {
-            _state.value = FeatureOneUiState.Error("Something went wrong")
-        }
-    }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = FeatureOneUiState.Loading
+    )
 }

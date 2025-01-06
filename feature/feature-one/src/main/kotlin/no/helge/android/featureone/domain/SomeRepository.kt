@@ -1,8 +1,7 @@
 package no.helge.android.featureone.domain
 
-import no.helge.android.common.Either
-import no.helge.android.common.Failure
+import kotlinx.coroutines.flow.Flow
 
 interface SomeRepository {
-    suspend fun getData(): Either<Failure, String>
+    fun getData(): Flow<String>
 }

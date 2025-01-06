@@ -1,16 +1,17 @@
 package no.helge.android.featureone.data
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import no.helge.android.featureone.domain.SomeRepository
-import no.helge.android.common.Either
-import no.helge.android.common.Failure
-import no.helge.android.common.toRight
 import javax.inject.Inject
 
 class SomeRepositoryImpl @Inject constructor(): SomeRepository {
 
-    override suspend fun getData(): Either<Failure, String> {
+    override fun getData() = flow {
+        println("Thread: ${Thread.currentThread().name}")
         delay(2000)
-        return "Feature One!".toRight()
-    }
+        emit("Feature One!")
+    }.flowOn(Dispatchers.IO)
 }

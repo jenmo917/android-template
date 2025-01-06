@@ -4,22 +4,17 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import no.helge.android.featuretwo.domain.SomeUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import no.helge.android.featuretwo.domain.FeatureTwoUseCase
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import no.helge.android.common.onFailure
-import no.helge.android.common.onSuccess
-import no.helge.android.core.domain.UseCase
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import no.helge.android.common.Result
 import javax.inject.Inject
 
-sealed class FeatureOneIntent {
-    data object LoadData : FeatureOneIntent()
-}
-
 @HiltViewModel
-class FeatureOneViewModel @Inject constructor(
-    private val someUseCase: SomeUseCase,
+class FeatureTwoViewModel @Inject constructor(
+    featureTwoUseCase: FeatureTwoUseCase,
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
@@ -29,23 +24,15 @@ class FeatureOneViewModel @Inject constructor(
         println("name: $name, age: $age")
     }
 
-    private val _state: MutableStateFlow<FeatureTwoUiState> = MutableStateFlow(FeatureTwoUiState.Loading)
-    val state: StateFlow<FeatureTwoUiState> = _state
-
-    fun handleIntent(intent: FeatureOneIntent) {
-        viewModelScope.launch {
-            when (intent) {
-                is FeatureOneIntent.LoadData -> loadData()
-            }
+    val uiState: StateFlow<FeatureTwoUiState> = featureTwoUseCase().map {
+        when (it) {
+            is Result.Error -> FeatureTwoUiState.Error("Something went wrong")
+            Result.Loading -> FeatureTwoUiState.Loading
+            is Result.Success -> FeatureTwoUiState.Success(it.data)
         }
-    }
-
-    private suspend fun loadData() {
-        _state.value = FeatureTwoUiState.Loading
-        someUseCase.run(UseCase.None()).onSuccess {
-            _state.value = FeatureTwoUiState.Success(it)
-        }.onFailure {
-            _state.value = FeatureTwoUiState.Error("Something went wrong")
-        }
-    }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = FeatureTwoUiState.Loading
+    )
 }

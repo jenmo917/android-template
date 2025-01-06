@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,11 +23,7 @@ fun FeatureOneScreen(
     onNavigate: () -> Unit = {},
     viewModel: FeatureOneViewModel = hiltViewModel(),
 ) {
-    LaunchedEffect(Unit) {
-        viewModel.handleIntent(FeatureOneIntent.LoadData)
-    }
-
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
     val currentState = state
 
     @Composable
