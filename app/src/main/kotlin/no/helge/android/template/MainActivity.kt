@@ -12,7 +12,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import no.helge.android.template.ui.theme.AndroidTemplateTheme
-import no.helge.android.featureone.ui.FeatureOneScreen
 import no.helge.android.template.navigation.AppNavHost
 
 @AndroidEntryPoint
