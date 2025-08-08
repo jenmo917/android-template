@@ -1,7 +1,8 @@
 package no.helge.android.featureone.ui
 
-sealed interface FeatureOneUiState {
-    data object Loading : FeatureOneUiState
-    data class Success(val data: String) : FeatureOneUiState
-    data class Error(val message: String) : FeatureOneUiState
-}
+data class FeatureOneUiState(
+    val counter: Int = 0,
+    val isLoading: Boolean = true,
+    val loadedData: String? = null,
+    val errorMessage: String? = null
+)

@@ -14,4 +14,9 @@ class SomeRepositoryImpl @Inject constructor(): SomeRepository {
         delay(2000)
         emit("Feature One!")
     }.flowOn(Dispatchers.IO)
+    
+    override suspend fun getInitialCounterValue(): Int {
+        delay(2000)
+        return (1..100).random()
+    }
 }

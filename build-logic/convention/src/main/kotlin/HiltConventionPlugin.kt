@@ -24,6 +24,8 @@ class HiltConventionPlugin : Plugin<Project> {
                 pluginManager.apply("dagger.hilt.android.plugin")
                 dependencies {
                     add("implementation", libs.findLibrary("hilt.android").get())
+                    // Add KSP processor for Android tests to support HiltTestRunner
+                    add("kspAndroidTest", libs.findLibrary("hilt.compiler").get())
                 }
             }
         }

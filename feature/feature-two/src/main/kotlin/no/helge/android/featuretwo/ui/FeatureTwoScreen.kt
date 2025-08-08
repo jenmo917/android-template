@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
+import no.helge.core.designsystem.component.CustomButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,7 +29,7 @@ fun FeatureTwoScreen(
     val currentState = state
 
     @Composable
-    fun BoxWithMessage(message: String) {
+    fun BoxWithMessage(message: String, showRetry: Boolean = false) {
         Box(
             modifier = modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -39,7 +39,18 @@ fun FeatureTwoScreen(
             ) {
                 Text(text = message, fontSize = 24.sp)
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = onNavigate) {
+                if (showRetry) {
+                    CustomButton(onClick = {
+                        viewModel.onAction(FeatureTwoAction.Retry)
+                    }) {
+                        Text(text = "Retry")
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+                CustomButton(onClick = {
+                    viewModel.onAction(FeatureTwoAction.NavigateBack)
+                    onNavigate() 
+                }) {
                     Text(text = "Navigate to Feature One")
                 }
             }
@@ -49,7 +60,7 @@ fun FeatureTwoScreen(
     when (currentState) {
         FeatureTwoUiState.Loading -> BoxWithMessage("Loading...")
         is FeatureTwoUiState.Success -> {BoxWithMessage("Hello $name, $age!, Data: ${currentState.data}") }
-        is FeatureTwoUiState.Error -> BoxWithMessage("Error: ${currentState.message}!")
+        is FeatureTwoUiState.Error -> BoxWithMessage("Error: ${currentState.message}!", showRetry = true)
     }
 }
 

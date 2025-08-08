@@ -4,4 +4,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface SomeRepository {
     fun getData(): Flow<String>
+    suspend fun getInitialCounterValue(): Int
 }

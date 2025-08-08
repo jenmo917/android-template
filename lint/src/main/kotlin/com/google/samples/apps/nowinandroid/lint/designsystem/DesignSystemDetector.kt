@@ -59,14 +59,14 @@ class DesignSystemDetector : Detector(), Detector.UastScanner {
         // Android module, so we can't use composable function references (eg. ::Button.name)
         // instead of hardcoded names.
         val METHOD_NAMES = mapOf(
-            "MaterialTheme" to "NiaTheme",
-            "Button" to "NiaButton",
-            "OutlinedButton" to "NiaOutlinedButton",
-            "TextButton" to "NiaTextButton",
-            "FilterChip" to "NiaFilterChip",
+            "MaterialTheme" to "CustomTheme",
+            "Button" to "CustomButton",
+            "OutlinedButton" to "CustomOutlinedButton",
+            "TextButton" to "CustomTextButton",
+            "FilterChip" to "CustomFilterChip",
         )
         val RECEIVER_NAMES = mapOf(
-            "Icons" to "NiaIcons",
+            "Icons" to "CustomIcons",
         )
 
         fun reportIssue(

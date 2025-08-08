@@ -49,64 +49,64 @@ class DesignSystemDetectorTest {
             .run()
             .expect(
                 """
-                src/test.kt:5: Error: Using MaterialTheme instead of NiaTheme [DesignSystem]
+                src/test.kt:5: Error: Using MaterialTheme instead of CustomTheme [DesignSystem]
                     MaterialTheme()
                     ~~~~~~~~~~~~~~~
-                src/test.kt:6: Error: Using Button instead of NiaButton [DesignSystem]
+                src/test.kt:6: Error: Using Button instead of CustomButton [DesignSystem]
                     Button()
                     ~~~~~~~~
-                src/test.kt:7: Error: Using OutlinedButton instead of NiaOutlinedButton [DesignSystem]
+                src/test.kt:7: Error: Using OutlinedButton instead of CustomOutlinedButton [DesignSystem]
                     OutlinedButton()
                     ~~~~~~~~~~~~~~~~
-                src/test.kt:8: Error: Using TextButton instead of NiaTextButton [DesignSystem]
+                src/test.kt:8: Error: Using TextButton instead of CustomTextButton [DesignSystem]
                     TextButton()
                     ~~~~~~~~~~~~
-                src/test.kt:9: Error: Using FilterChip instead of NiaFilterChip [DesignSystem]
+                src/test.kt:9: Error: Using FilterChip instead of CustomFilterChip [DesignSystem]
                     FilterChip()
                     ~~~~~~~~~~~~
-                src/test.kt:10: Error: Using ElevatedFilterChip instead of NiaFilterChip [DesignSystem]
+                src/test.kt:10: Error: Using ElevatedFilterChip instead of CustomFilterChip [DesignSystem]
                     ElevatedFilterChip()
                     ~~~~~~~~~~~~~~~~~~~~
-                src/test.kt:11: Error: Using NavigationBar instead of NiaNavigationBar [DesignSystem]
+                src/test.kt:11: Error: Using NavigationBar instead of CustomNavigationBar [DesignSystem]
                     NavigationBar()
                     ~~~~~~~~~~~~~~~
-                src/test.kt:12: Error: Using NavigationBarItem instead of NiaNavigationBarItem [DesignSystem]
+                src/test.kt:12: Error: Using NavigationBarItem instead of CustomNavigationBarItem [DesignSystem]
                     NavigationBarItem()
                     ~~~~~~~~~~~~~~~~~~~
-                src/test.kt:13: Error: Using NavigationRail instead of NiaNavigationRail [DesignSystem]
+                src/test.kt:13: Error: Using NavigationRail instead of CustomNavigationRail [DesignSystem]
                     NavigationRail()
                     ~~~~~~~~~~~~~~~~
-                src/test.kt:14: Error: Using NavigationRailItem instead of NiaNavigationRailItem [DesignSystem]
+                src/test.kt:14: Error: Using NavigationRailItem instead of CustomNavigationRailItem [DesignSystem]
                     NavigationRailItem()
                     ~~~~~~~~~~~~~~~~~~~~
-                src/test.kt:15: Error: Using TabRow instead of NiaTabRow [DesignSystem]
+                src/test.kt:15: Error: Using TabRow instead of CustomTabRow [DesignSystem]
                     TabRow()
                     ~~~~~~~~
-                src/test.kt:16: Error: Using Tab instead of NiaTab [DesignSystem]
+                src/test.kt:16: Error: Using Tab instead of CustomTab [DesignSystem]
                     Tab()
                     ~~~~~
-                src/test.kt:17: Error: Using IconToggleButton instead of NiaIconToggleButton [DesignSystem]
+                src/test.kt:17: Error: Using IconToggleButton instead of CustomIconToggleButton [DesignSystem]
                     IconToggleButton()
                     ~~~~~~~~~~~~~~~~~~
-                src/test.kt:18: Error: Using FilledIconToggleButton instead of NiaIconToggleButton [DesignSystem]
+                src/test.kt:18: Error: Using FilledIconToggleButton instead of CustomIconToggleButton [DesignSystem]
                     FilledIconToggleButton()
                     ~~~~~~~~~~~~~~~~~~~~~~~~
-                src/test.kt:19: Error: Using FilledTonalIconToggleButton instead of NiaIconToggleButton [DesignSystem]
+                src/test.kt:19: Error: Using FilledTonalIconToggleButton instead of CustomIconToggleButton [DesignSystem]
                     FilledTonalIconToggleButton()
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                src/test.kt:20: Error: Using OutlinedIconToggleButton instead of NiaIconToggleButton [DesignSystem]
+                src/test.kt:20: Error: Using OutlinedIconToggleButton instead of CustomIconToggleButton [DesignSystem]
                     OutlinedIconToggleButton()
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~
-                src/test.kt:21: Error: Using CenterAlignedTopAppBar instead of NiaTopAppBar [DesignSystem]
+                src/test.kt:21: Error: Using CenterAlignedTopAppBar instead of CustomTopAppBar [DesignSystem]
                     CenterAlignedTopAppBar()
                     ~~~~~~~~~~~~~~~~~~~~~~~~
-                src/test.kt:22: Error: Using SmallTopAppBar instead of NiaTopAppBar [DesignSystem]
+                src/test.kt:22: Error: Using SmallTopAppBar instead of CustomTopAppBar [DesignSystem]
                     SmallTopAppBar()
                     ~~~~~~~~~~~~~~~~
-                src/test.kt:23: Error: Using MediumTopAppBar instead of NiaTopAppBar [DesignSystem]
+                src/test.kt:23: Error: Using MediumTopAppBar instead of CustomTopAppBar [DesignSystem]
                     MediumTopAppBar()
                     ~~~~~~~~~~~~~~~~~
-                src/test.kt:24: Error: Using LargeTopAppBar instead of NiaTopAppBar [DesignSystem]
+                src/test.kt:24: Error: Using LargeTopAppBar instead of CustomTopAppBar [DesignSystem]
                     LargeTopAppBar()
                     ~~~~~~~~~~~~~~~~
                 20 errors, 0 warnings
@@ -134,7 +134,7 @@ class DesignSystemDetectorTest {
             .run()
             .expect(
                 """
-                src/test.kt:2: Error: Using Icons instead of NiaIcons [DesignSystem]
+                src/test.kt:2: Error: Using Icons instead of CustomIcons [DesignSystem]
                     Icons.toString()
                     ~~~~~~~~~~~~~~~~
                 1 errors, 0 warnings
