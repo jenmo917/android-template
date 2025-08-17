@@ -6,7 +6,13 @@
       "Bash(rm:*)",
       "Bash(mkdir:*)",
       "Bash(find:*)",
-      "Bash(adb:*)"
+      "Bash(adb:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(mv:*)",
+      "Bash(kotlinc:*)",
+      "mcp__serena__list_dir",
+      "mcp__serena__read_file"
     ],
     "deny": []
   }
